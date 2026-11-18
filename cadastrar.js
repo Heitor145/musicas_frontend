@@ -6,11 +6,19 @@ const inputGenero = document.getElementById("genero")
 const inputAno = document.getElementById("ano")
 const inputDuracao = document.getElementById("duracao")
 
-const botaoCadastrar = document.getElementById("Click", cadastrar)
+const botaoCadastrar = document.getElementById("botaoCadastrar")
+
+botaoCadastrar.addEventListener("click", cadastrarMusica)
 
 async function cadastrarMusica() {
-    if(inputTitulo.value === "" || inputArtista === "" || inputGenero === "" || inputAno === "" || inputDuracao === "") {
-        alert("precisa preencher tudo")
+    if (
+        inputTitulo.value === "" ||
+        inputArtista.value === "" ||
+        inputGenero.value === "" ||
+        inputAno.value === "" ||
+        inputDuracao.value === ""
+    ) {
+        alert("Preencha todos os campos!")
         return
     }
 
@@ -18,8 +26,8 @@ async function cadastrarMusica() {
         titulo: inputTitulo.value,
         artista: inputArtista.value,
         genero: inputGenero.value,
-        ano: inputAno.value,
-        duracao: inputDuracao.value
+        ano: inputAno.valueAsNumber,
+        duracao: inputDuracao.valueAsNumber
     }
 
     const resposta = await fetch(`${urlBackend}/cadastrar`, {
